@@ -1,0 +1,42 @@
+<div ng-controller="CreateController as CC">
+	<div ng-init="CC.index()">
+		<div ng-init="UC.session()">
+			<div class="header">
+				<h1>Welcome {{ UC.current_user.name }}!</h3>
+				<ul>
+					<li><a href="#!/dashboard">Bucket List</a></li>
+					<li><a href="#!/dashboard">Home</a></li>
+					<li><a href="#" ng-click="UC.logout()">Logout</a></li>
+				</ul>	
+			</div>
+			<div>
+				<form ng-submit="CC.create(CC.newBucketlist)">
+					<input type="text" placeholder="Title" ng-model="CC.newBucketlist.title">
+					<input type="text" placeholder="Description" ng-model="CC.newBucketlist.description">
+					<div ng-init="CC.index()">
+						<select ng-model="CC.newBucketlist.tag">
+							<option ng-if="UC.current_user._id != user._id" ng-repeat="user in UC.users"> {{ user.name }}</option>
+						</select>
+					</div>
+					<input type="submit" value="Add to list">
+				</form>
+				<p ng-repeat="error in CC.new_bucklist_errors[index]">{{ error }}</p>
+			</div>
+			<div>
+				<h3>Before I die I want to:</h3>
+					<!-- <p>{{CC.bucketlists}}</p> -->
+					<div ng-repeat="bucketlist in CC.bucketlists">
+						<input type="checkbox" checked ng-if="bucketlist.user._id == UC.current_user._id && bucketlist.complete===true" ng-click="CC.checkList(bucketlist._id">
+						<h3>{{ bucketlist.user.name }}</h3>
+						<h3>{{ bucketlist.title }}</h3>
+						<h3>{{ bucketlist.description }}</h3>
+						<h3>{{ bucketlist.createdAt | date: 'MMM/dd/yyyy' }}</h3>
+					</div>
+			</div>
+				<div ng-init = "UC.index()">
+					<h3>List of other users (please click to view profile):</h3>
+					<p ng-repeat="user in UC.users"><a href="#!/users/{{user._id}}">{{ user.name }}</a></p>
+				</div>
+		</div>
+	</div>	
+</div>

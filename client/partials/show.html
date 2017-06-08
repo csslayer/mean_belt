@@ -1,0 +1,35 @@
+<div ng-controller="UsersController as UC">
+	<div ng-controller="CreateController as CC">
+		<div ng-init="CC.index()">
+			<div ng-init="UC.session()">
+				<div class="header">
+					<ul>
+						<li><a href="#!/dashboard">Bucket List</a></li>
+						<li><a href="#!/dashboard">Home</a></li>
+						<li><a href="#" ng-click="UC.logout()">Logout</a></li>
+					</ul>
+					<h3>{{ UC.current_user.name }}'s Bucket List</h3>	
+				</div>
+				<h2>Done:</h2>
+				<!-- testing show bucketlists -->
+				<!-- <p>{{CC.bucketlists}}</p> -->
+				
+				<div ng-repeat="bucketlist in CC.bucketlists" ng-if="bucketlist.complete===true">
+					<input type="checkbox" disabled checked>
+					<h3>{{ bucketlist.user.name }}</h3>
+					<h3>{{ bucketlist.title }}</h3>
+					<h3>{{ bucketlist.description }}</h3>
+					<h3>{{ bucketlist.createdAt | date: 'MMM/dd/yyyy' }}</h3>	
+				</div>
+				<h2>Pending:</h2>
+				<div ng-repeat="bucketlist in CC.bucketlists" ng-if="bucketlist.complete===false">
+					<input type="checkbox" disabled>
+					<h3>{{ bucketlist.user.name }}</h3>
+					<h3>{{ bucketlist.title }}</h3>
+					<h3>{{ bucketlist.description }}</h3>
+					<h3>{{ bucketlist.createdAt | date: 'MMM/dd/yyyy' }}</h3>	
+				</div>				
+			</div>
+		</div>	
+	</div>	
+</div>	

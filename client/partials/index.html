@@ -1,0 +1,32 @@
+<div>
+	<div id="registration">
+		<h3>Register</h3>
+
+		<form ng-submit="UC.create(UC.newUser)">
+			Name: <input type="text" ng-model="UC.newUser.name"><br>
+			Email: <input type="text" ng-model="UC.newUser.email"><br>
+			Password: <input ng-show="showpassword" type="text" ng-model="UC.newUser.password"><br>
+			<input ng-hide="showpassword" type="password" ng-model="UC.newUser.password"><br>
+			<input type="checkbox" ng-model="showpassword" ng-checked="false"><br>
+			Password confirmation: <input ng-show="showpassword" type="text" ng-model="UC.newUser.password_confirmation"><br> 
+			<input ng-hide="showpassword" type="password" ng-model="UC.newUser.password"><br>
+			<input type="checkbox" ng-model="showpassword" ng-checked="false"><br>
+			<input type="submit" value="Register">
+		</form>
+		<div>
+			<p class="error" ng-repeat="error in UC.registration_errors">{{ error }}</p>
+		</div>		
+	</div>
+	<div id="login">
+		<h3>Log In</h3>
+
+		<form ng-submit="UC.login(UC.loginUser)">
+			Email: <input type="text" ng-model="UC.loginUser.email"><br>
+	  		Password: <input ng-show="showpassword" type="text" ng-model="UC.loginUser.password"><br>
+	  		<input ng-hide="showpassword" type="password" ng-model="UC.loginUser.password"><br>
+	  		<input type="checkbox" ng-model="showpassword" ng-checked="false"><br>
+	    	<input type="submit" value="Log In">
+		</form>
+		<p class="error" ng-repeat="error in UC.login_errors">{{ error }}</p>
+	</div>
+</div>	
